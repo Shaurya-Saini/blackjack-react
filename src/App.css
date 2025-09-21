@@ -1,0 +1,522 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+  background: 
+    /* Matt texture SVG pattern overlay */
+    url("data:image/svg+xml;utf8,<svg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='60' height='60' fill='%23176a3a'/><circle cx='30' cy='30' r='1.5' fill='%231a4a2e' fill-opacity='0.12'/><circle cx='10' cy='10' r='1.5' fill='%231a4a2e' fill-opacity='0.12'/><circle cx='50' cy='50' r='1.5' fill='%231a4a2e' fill-opacity='0.12'/></svg>"),
+    linear-gradient(135deg, #176a3a 0%, #114c26 100%);
+  min-height: 100vh;
+  color: #fff;
+  background-size: 120px 120px, cover;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.center-title {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.center-title h1 {
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #ffd700;
+  text-shadow: 0 4px 24px #8b4513, 0 1px 0 #8b4513;
+  background: linear-gradient(90deg, #ffd700 60%, #fffbe6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  padding: 0 24px;
+}
+
+.main-container {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100vw;
+  max-width: 1100px;
+  padding: 32px 0;
+}
+
+.casino-table {
+  background: radial-gradient(ellipse at center, #2d5a3d 0%, #1a4a2e 100%);
+  border: 8px solid #8b4513;
+  border-radius: 50px;
+  padding: 40px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.1);
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
+}
+
+.casino-table::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 2px solid #ffd700;
+  border-radius: 40px;
+  pointer-events: none;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.game-header.minimalist-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.game-header h1 {
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: 2.5rem;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.game-header.minimalist-header h1 {
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffd700;
+  margin: 0;
+  text-shadow: 1px 1px 6px #114c26;
+}
+
+.game-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.game-area.minimalist-area {
+  background: 
+    url('https://www.transparenttextures.com/patterns/wood-pattern.png'),
+    linear-gradient(135deg, #a9744f 0%, #7b4b27 100%);
+  background-blend-mode: multiply;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.13), 0 1.5px 0 #fff4;
+  padding: 36px 44px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 370px;
+  border: 3px solid #8b4513;
+}
+
+.hand {
+  text-align: center;
+}
+
+.hand-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px #7b4b27;
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.cards-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 80px;
+  height: 112px;
+  background: #fffbe6;
+  border-radius: 10px;
+  border: 2px solid #8b4513;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(139,69,19,0.18);
+  transition: transform 0.3s ease;
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.04);
+}
+
+.card-back {
+  background: linear-gradient(45deg, #1e3a8a 0%, #3b82f6 50%, #1e3a8a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-pattern {
+  width: 60px;
+  height: 80px;
+  background: repeating-linear-gradient(45deg, #ffd700, #ffd700 2px, transparent 2px, transparent 8px);
+  border-radius: 4px;
+}
+
+.card-corner {
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.card-corner.top-left {
+  top: 6px;
+  left: 6px;
+}
+
+.card-corner.bottom-right {
+  bottom: 6px;
+  right: 6px;
+  transform: rotate(180deg);
+}
+
+.card-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-suit-large {
+  font-size: 24px;
+}
+
+.card.red {
+  color: #dc2626;
+}
+
+.card.black {
+  color: #000;
+}
+
+.control-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.control-area.minimalist-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.betting-panel {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  min-width: 100%;
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.betting-sidebar {
+  min-width: 240px;
+  background: 
+    url('https://www.transparenttextures.com/patterns/wood-pattern.png'),
+    linear-gradient(135deg, #a9744f 0%, #7b4b27 100%);
+  background-blend-mode: multiply;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.13), 0 1.5px 0 #fff4;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #8b4513;
+}
+
+.money-display h3 {
+  color: #ffd700;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.betting-controls {
+  margin-top: 15px;
+}
+
+.bet-input-group {
+  margin-bottom: 15px;
+}
+
+.bet-input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ffd700;
+}
+
+.bet-input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ffd700;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+
+.quick-bets {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.quick-bet-btn {
+  padding: 8px 12px;
+  background: #ffd700;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.quick-bet-btn:hover:not(:disabled) {
+  background: #ffed4e;
+  transform: translateY(-2px);
+}
+
+.quick-bet-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.place-bet-btn {
+  width: 100%;
+  padding: 12px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.place-bet-btn:hover:not(:disabled) {
+  background: #ef4444;
+  transform: translateY(-2px);
+}
+
+.place-bet-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.game-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.control-btn {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.hit-btn {
+  background: #16a34a;
+  color: white;
+}
+
+.hit-btn:hover:not(:disabled) {
+  background: #22c55e;
+  transform: translateY(-3px);
+}
+
+.stand-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.stand-btn:hover {
+  background: #ef4444;
+  transform: translateY(-3px);
+}
+
+.new-game-btn {
+  background: #ffd700;
+  color: #000;
+}
+
+.new-game-btn:hover {
+  background: #ffed4e;
+  transform: translateY(-3px);
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.game-message {
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+  animation: fadeIn 0.5s ease;
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.game-message.win {
+  background: #16a34a;
+  color: white;
+  border: 2px solid #22c55e;
+}
+
+.game-message.lose {
+  background: #dc2626;
+  color: white;
+  border: 2px solid #ef4444;
+}
+
+.game-message.blackjack {
+  background: #ffd700;
+  color: #000;
+  border: 2px solid #ffed4e;
+}
+
+.game-message.push {
+  background: #6b7280;
+  color: white;
+  border: 2px solid #9ca3af;
+}
+
+.game-message.error {
+  background: #dc2626;
+  color: white;
+  border: 2px solid #ef4444;
+}
+
+.game-over-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.game-over-message {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  padding: 40px 60px;
+  text-align: center;
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.game-over-message h2 {
+  color: #ffd700;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.restart-btn {
+  margin-top: 18px;
+  padding: 10px 32px;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Montserrat", "Segoe UI", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.restart-btn:hover {
+  background: #444;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    padding: 16px 0;
+  }
+  .betting-sidebar {
+    min-width: 90vw;
+    padding: 24px 10vw;
+  }
+  .game-area.minimalist-area {
+    min-width: 90vw;
+    padding: 24px 10vw;
+  }
+  .cards-container {
+    gap: 5px;
+  }
+  .card {
+    width: 60px;
+    height: 84px;
+  }
+}
